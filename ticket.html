@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi Tickets Hôtel</title>
+    <link rel="stylesheet" href="ticket.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Barre de navigation supérieure -->
+    <header id="topBar">
+        <div class="logo-container">
+            <img src="R.png" alt="Logo Hôtel" class="logo">
+            <div class="company-info">
+                <h1>IBIS</h1>
+                <p>Système de Gestion des Tickets</p>
+            </div>
+        </div>
+        <div class="user-info" id="userInfoSection">
+            <span id="currentDept"></span>
+            <button id="logoutHeaderBtn" style="display:none;">Déconnexion</button>
+        </div>
+    </header>
+
+    <div id="loginSection" class="container">
+        <h2>Connexion Département</h2>
+        <form id="loginForm">
+            <label>Département :
+                <select id="loginDepartement" required>
+                    <option value="" disabled selected>Choisir un département</option>
+                    <option value="Réception">Réception</option>
+                    <option value="Cuisine">Cuisine</option>
+                    <option value="Entretien">Entretien</option>
+                    <option value="Sécurité">Sécurité</option>
+                    <option value="IT">IT</option>
+                </select>
+            </label>
+            <label>Mot de passe :
+                <input type="password" id="loginPassword" required />
+            </label>
+            <button type="submit">Se connecter</button>
+            <p id="loginError" style="color:red; display:none;">Département ou mot de passe incorrect</p>
+        </form>
+    </div>
+
+    <div id="mainSection" style="display:none;" class="container">
+        <div class="header-section">
+            <h2>Bienvenue, <span id="deptName"></span></h2>
+            <button id="logoutBtn">Déconnexion</button>
+        </div>
+
+        <!-- Formulaire d'envoi de ticket (visible pour tous sauf IT) -->
+        <div id="ticketFormSection" style="display:none;" class="dashboard-card">
+            <h2>📝 Soumettre un ticket</h2>
+            <form id="ticketForm">
+                <label>Nom :
+                    <input type="text" id="ticketNom" required placeholder="Votre nom" />
+                </label>
+                <label>Description du problème :
+                    <textarea id="ticketDescription" required placeholder="Décrivez le problème en détail..."></textarea>
+                </label>
+                <label>Priorité :
+                    <select id="ticketPriorite" required>
+                        <option value="Basse">Basse</option>
+                        <option value="Moyenne">Moyenne</option>
+                        <option value="Urgente">Urgente</option>
+                    </select>
+                </label>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+
+        <div class="dashboard-container">
+            <!-- Section Gestion Départements (IT seulement) -->
+            <div id="adminITSection" style="display:none;" class="dashboard-card">
+                <h2>🔧 Gestion des Départements</h2>
+                <form id="manageDeptForm">
+                    <label>Nom du département :
+                        <input type="text" id="newDeptName" required />
+                    </label>
+                    <label>Mot de passe :
+                        <input type="text" id="newDeptPass" required />
+                    </label>
+                    <button type="submit">Ajouter / Mettre à jour</button>
+                </form>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Départements existants :</h3>
+                    <div id="deptCounter" style="background: #3498db; color: white; padding: 5px 10px; border-radius: 12px; font-weight: bold;">
+                        Total: <span id="deptCount">0</span>
+                    </div>
+                </div>
+                <h3>Départements existants :</h3>
+                <ul id="departementList" class="dept-list"></ul>
+            </div>
+
+            <!-- Section Gestion Tickets -->
+            <div class="dashboard-card">
+                <div id="dashboardIT" style="display: none;">
+                    <h2>📊 Tableau de Bord</h2>
+                    <div id="statsContent"></div>
+                </div>
+
+                <div id="ticketManagementSection">
+                    <h2>🎫 Gestion des Tickets</h2>
+
+                    <div id="exportButtons" style="display: none;" class="button-group">
+                        <button onclick="exportTicketsCSV()">📤 Exporter en Excel</button>
+                        <button onclick="exportTicketsPDF()">📄 Exporter en PDF</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="archiveResolvedBtn" style="display: none;">🗄 Archiver les résolus</button>
+                    </div>
+                </div>
+
+                <div id="notifAlert" style="display: none;">
+                    📬 Nouveau ticket reçu !
+                </div>
+
+                <h2>Tickets en cours</h2>
+                <div class="table-container">
+                    <table id="ticketsTable">
+                        <thead>
+                            <tr>
+                                <th>Département</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Priorité</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th id="itActionsHeader" style="display:none;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ticketsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Tickets Archivés -->
+        <div id="archivedTicketsSection" style="display:none;" class="dashboard-card">
+            <h2>📦 Tickets Archivés (Résolus)</h2>
+            <div class="table-container">
+                <table id="archivedTicketsTable">
+                    <thead>
+                        <tr>
+                            <th>Département</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Priorité</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archivedTicketsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <audio id="notifSound" src="sounds/ding.mp3" preload="auto">message</audio>
+    <script src="ticket.js"></script>
+</body>
+
+</html>

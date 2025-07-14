@@ -1,0 +1,557 @@
+/* Barre supérieure */
+
+#topBar {
+    background: linear-gradient(135deg, #2c3e50, #1a2530);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 8px;
+    border: 2px solid #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.company-info h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.company-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #bdc3c7;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#currentDept {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+#logoutHeaderBtn {
+    background: #e74c3c;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 14px;
+}
+
+#logoutHeaderBtn:hover {
+    background: #c0392b;
+}
+
+
+/* Conteneur principal */
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+
+/* Reste du CSS reste inchangé */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+#loginSection {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#loginSection h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+
+/* ... [Le reste du CSS précédent reste inchangé] ... */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f0f2f5;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#logoutBtn {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-width: 150px;
+}
+
+
+/* Layout */
+
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+
+/* Listes */
+
+.dept-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dept-list li {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.dept-list input {
+    flex: 1;
+    min-width: 150px;
+}
+
+
+/* Tableaux */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+
+/* Sections spécifiques */
+
+#ticketFormSection {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#adminITSection {
+    display: none;
+}
+
+#archivedTicketsSection {
+    display: none;
+    background: #f8f8f8;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#archivedTicketsSection h2 {
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+
+/* Boutons */
+
+#archiveResolvedBtn {
+    background: #6c757d;
+    display: block;
+    margin: 20px auto;
+    max-width: 250px;
+    padding: 10px;
+}
+
+#archiveResolvedBtn:hover {
+    background: #5a6268;
+}
+
+#exportButtons {
+    margin: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#exportButtons button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#exportButtons button:first-child {
+    background: #28a745;
+}
+
+#exportButtons button:first-child:hover {
+    background: #218838;
+}
+
+#exportButtons button:last-child {
+    background: #dc3545;
+}
+
+#exportButtons button:last-child:hover {
+    background: #c82333;
+}
+
+
+/* Notification */
+
+#notifAlert {
+    display: none;
+    background-color: #ffe08a;
+    padding: 15px;
+    border: 1px solid #ffaa00;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .dashboard-card {
+        min-width: 100%;
+    }
+    #exportButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+    #exportButtons button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+#dashboardIT {
+    display: none;
+    /* Caché par défaut */
+}
+
+
+/* AJOUTER CE STYLE À LA FIN DU FICHIER */
+
+#deptCounter {
+    background: #3498db;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Top bar adjustments */
+    #topBar {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+    .logo-container {
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    .user-info {
+        justify-content: center;
+    }
+    #currentDept {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    /* Dashboard adjustments */
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .dashboard-card {
+        min-width: 100%;
+    }
+    /* Form adjustments */
+    .container {
+        padding: 0 15px;
+    }
+    #loginSection {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    /* Button groups */
+    #exportButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+    #exportButtons button {
+        width: 100%;
+        max-width: 300px;
+    }
+    /* Department list */
+    .dept-list li {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .dept-list input {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header adjustments */
+    .company-info h1 {
+        font-size: 20px;
+    }
+    .company-info p {
+        font-size: 12px;
+    }
+    /* Login form */
+    #loginSection {
+        padding: 15px;
+    }
+    /* Table actions */
+    .action-buttons {
+        flex-direction: column;
+    }
+    .status-select,
+    .delete-btn,
+    .restore-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    /* Hide less important columns */
+    th:nth-child(5),
+    td:nth-child(5) {
+        /* Date column */
+        display: none;
+    }
+}
+
+
+/* Table wrapper for horizontal scrolling */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* Status indicators */
+
+.status-cell {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.resolved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.in-progress {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.pending {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+/* Action buttons */
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+
+/* Styles pour le tableau de statistiques */
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.stats-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+
+/* Responsive pour les petits écrans */
+
+@media (max-width: 768px) {
+    .stats-table {
+        font-size: 14px;
+    }
+    .stats-table th,
+    .stats-table td {
+        padding: 8px 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-table {
+        font-size: 12px;
+    }
+    .stats-table th:nth-child(2),
+    .stats-table th:nth-child(3),
+    .stats-table th:nth-child(4),
+    .stats-table th:nth-child(5),
+    .stats-table td:nth-child(2),
+    .stats-table td:nth-child(3),
+    .stats-table td:nth-child(4),
+    .stats-table td:nth-child(5) {
+        display: none;
+    }
+}
